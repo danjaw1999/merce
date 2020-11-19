@@ -23,53 +23,56 @@
 // asd.print()
 // kot.print();
 // pies.print();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// class Jajeczko {
+//   constructor(theName: string, theSurname: string) {}
 
-class Jajeczko {
-  constructor(theName: string, theSurname: string) {}
+//   klops(a: number) {
+//     console.log("a", a);
+//   }
+// }
+// class Animal extends Jajeczko {
+//   isBarking: boolean = true;
 
-  klops(a: number) {
-    console.log("a", a);
-  }
-}
-class Animal extends Jajeczko {
-  isBarking: boolean = true;
+//   constructor(theName: string, theSurname: string) {
+//     super(theName, theSurname);
+//   }
 
-  constructor(theName: string, theSurname: string) {
-    super(theName, theSurname);
-  }
+//   move(distanceInMeters: number = 0) {
+//     console.log(`Animal moved ${distanceInMeters}m.`);
+//     console.log("isBarking", this.isBarking);
+//   }
+// }
 
-  move(distanceInMeters: number = 0) {
-    console.log(`Animal moved ${distanceInMeters}m.`);
-    console.log("isBarking", this.isBarking);
-  }
-}
+// class Dog extends Animal {
+//   // isBarking: boolean;
+//   theSex: string;
 
-class Dog extends Animal {
-  // isBarking: boolean;
-  theSex: string;
+//   constructor(theName: string, theSurname: string, theSex: string) {
+//     super(theName, theSurname);
+//     this.theSex = theSex;
+//   }
 
-  constructor(theName: string, theSurname: string, theSex: string) {
-    super(theName, theSurname);
-    this.theSex = theSex;
-  }
+//   bark() {
+//     console.log("Woof! Woof!");
+//     console.log(this.theSex);
+//   }
 
-  bark() {
-    console.log("Woof! Woof!");
-    console.log(this.theSex);
-  }
+//   move(m: number) {
+//     super.move(m);
+//     console.log("hahahha");
+//   }
+// }
 
-  move(m: number) {
-    super.move(m);
-    console.log("hahahha");
-  }
-}
+// const dog = new Dog("Klops", "jajecko", "male");
+// dog.bark();
+// dog.move(10);
+// dog.bark();
+// dog.klops(9);
+// dog.isBarking = false;
 
-const dog = new Dog("Klops", "jajecko", "male");
-dog.bark();
-dog.move(10);
-dog.bark();
-dog.klops(9);
-dog.isBarking = false;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // const fullNameMaxLength = 9;
 
 // class Employee {
@@ -95,11 +98,69 @@ dog.isBarking = false;
 //   console.log(employee.fullName );
 // }
 
-class Employee {
-  private name: string;
-  constructor(theName: string) {
-    this.name = theName;
+// class Employee {
+//   private name: string;
+//   constructor(theName: string) {
+//     this.name = theName;
+//   }
+// }
+
+// let employee = new Employee("Bob");
+let figuresTable = [];
+abstract class Figure {
+  protected pFigureName: string;
+  abstract get surfaceArea(): number;
+  abstract get circuit(): number;
+  get figureName(): string {
+    return this.pFigureName;
   }
 }
+class Circle extends Figure {
+  ray: number;
 
-let employee = new Employee("Bob");
+  constructor(ray: number) {
+    super();
+    this.ray = ray;
+    this.pFigureName = "circle";
+  }
+
+  get surfaceArea(): number {
+    return this.ray * this.ray * Math.PI;
+  }
+
+  get circuit(): number {
+    return this.ray * 2 * Math.PI;
+  }
+}
+class Rectangle extends Figure {
+  width: number;
+  height: number;
+
+  constructor(width: number, height: number) {
+    super();
+    this.width = width;
+    this.height = height;
+    this.pFigureName = "rectangle";
+  }
+
+  get surfaceArea(): number {
+    return this.width * this.height;
+  }
+
+  get circuit(): number {
+    return this.width * 2 + this.height * 2;
+  }
+}
+figuresTable.push(new Circle(100));
+figuresTable.push(new Rectangle(100, 200));
+
+figuresTable.forEach((figure) =>
+  console.log(
+    "Nazwa figury: ",
+    figure.figureName,
+    " Obwód: ",
+    figure.circuit,
+    " Pole powierzchni: ",
+    figure.surfaceArea
+  )
+);
